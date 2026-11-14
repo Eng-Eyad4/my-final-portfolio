@@ -1,0 +1,586 @@
+/* ==========================================================================
+   pages — header, hero, projects, contact, dashboard, footer
+   ========================================================================== */
+
+/* الشريط العلوي ---------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1000;
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--border-color);
+  transition:
+    background-color var(--dur-theme) ease-out,
+    border-color var(--dur-theme) ease-out;
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+}
+
+.brand {
+  font-size: var(--text-md);
+  font-weight: 700;
+  unicode-bidi: plaintext;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 36px;
+  padding-inline: var(--space-3);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition:
+    background-color var(--dur) ease-out,
+    border-color var(--dur) ease-out,
+    color var(--dur) ease-out;
+}
+
+.nav__link:hover {
+  background-color: var(--bg-input);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.nav__link.is-active {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.nav__link--panel {
+  border-color: var(--border-color);
+}
+
+.nav__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding-inline: 6px;
+  border-radius: var(--radius);
+  background-color: var(--danger);
+  color: #fff;
+  font-size: 12px;
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.menu-btn {
+  display: none;
+}
+
+/* القسم الرئيسي ---------------------------------------------------------- */
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-8);
+  padding: var(--space-8);
+}
+
+.hero__media {
+  flex: 0 0 160px;
+}
+
+.hero__avatar {
+  width: 160px;
+  height: 160px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+  object-fit: cover;
+}
+
+.hero__body {
+  flex: 1 1 320px;
+}
+
+.hero__name {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-xl);
+  line-height: 1.25;
+  unicode-bidi: plaintext;
+}
+
+.hero__role {
+  margin-bottom: var(--space-4);
+  color: var(--primary);
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.hero__bio {
+  max-width: 65ch;
+  margin-bottom: var(--space-5);
+  color: var(--text-muted);
+  white-space: pre-line;
+}
+
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  margin-bottom: var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.meta-item strong {
+  color: var(--text-main);
+  unicode-bidi: plaintext;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.skill {
+  padding: 4px var(--space-3);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* عنوان قسم -------------------------------------------------------------- */
+
+.section-head {
+  margin-bottom: var(--space-8);
+}
+
+.section-head__title {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-lg);
+}
+
+.section-head__text {
+  max-width: 65ch;
+  color: var(--text-muted);
+}
+
+.section-head--center {
+  text-align: center;
+}
+
+.section-head--center .section-head__text {
+  margin-inline: auto;
+}
+
+/* المشاريع --------------------------------------------------------------- */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background-color: var(--bg-surface);
+  transition: border-color var(--dur) ease-out;
+}
+
+.project:hover {
+  border-color: var(--primary);
+}
+
+.project__img {
+  width: 100%;
+  height: 192px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-input);
+  object-fit: cover;
+}
+
+.project__body {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5);
+}
+
+.project__title {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-md);
+  unicode-bidi: plaintext;
+}
+
+.project__desc {
+  max-width: 65ch;
+  margin-bottom: var(--space-4);
+  color: var(--text-muted);
+}
+
+.project__desc :where(ul, ol) {
+  margin-block: var(--space-2);
+  padding-inline-start: var(--space-5);
+  list-style: revert;
+}
+
+.project__link {
+  align-self: flex-start;
+  color: var(--primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.project__link:hover {
+  text-decoration: underline;
+}
+
+/* التواصل ---------------------------------------------------------------- */
+
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-7);
+  align-items: stretch;
+  max-width: 1020px;
+  margin-inline: auto;
+}
+
+.contact__aside {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  overflow: hidden;
+  padding: var(--space-7);
+}
+
+.contact__aside::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: 4px;
+  background-image: linear-gradient(90deg, var(--primary), var(--primary-hover));
+}
+
+.contact__art {
+  color: var(--primary);
+}
+
+.contact__art svg {
+  width: 100%;
+  max-width: 240px;
+  margin-inline: auto;
+}
+
+.contact__title {
+  font-size: var(--text-md);
+  line-height: 1.45;
+}
+
+.contact__text {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-3);
+  margin-block: var(--space-1);
+}
+
+.fact {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.fact__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+  color: var(--primary);
+}
+
+.fact__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.fact__label {
+  flex: 0 0 auto;
+  font-weight: 500;
+}
+
+.fact__value {
+  color: var(--text-main);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.contact__cta {
+  align-self: flex-start;
+}
+
+.contact__icon {
+  width: 18px;
+  height: 18px;
+  color: #25d366;
+}
+
+.contact__note {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--border-color);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+
+.contact__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-6);
+}
+
+/* لوحة التحكم ------------------------------------------------------------ */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-6);
+  align-items: start;
+  margin-bottom: var(--space-6);
+}
+
+.panel {
+  padding: var(--space-6);
+}
+
+.panel--wide {
+  margin-bottom: var(--space-6);
+}
+
+.panel--wide:last-child {
+  margin-bottom: 0;
+}
+
+.panel__title {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-color);
+  font-size: var(--text-md);
+}
+
+.inbox__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.inbox__head .panel__title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.inbox {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.message {
+  padding: var(--space-4);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+}
+
+.message__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.message__subject {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-base);
+}
+
+.message__body {
+  max-width: 65ch;
+  margin-bottom: var(--space-3);
+  color: var(--text-muted);
+  white-space: pre-line;
+}
+
+.message__body :where(ul, ol) {
+  margin-block: var(--space-2);
+  padding-inline-start: var(--space-5);
+  list-style: revert;
+}
+
+/* التذييل ----------------------------------------------------------------- */
+
+.site-footer {
+  margin-top: auto;
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--border-color);
+  background-color: var(--nav-bg);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+/* الشاشات المتوسطة والصغيرة ---------------------------------------------- */
+
+@media (max-width: 900px) {
+  .contact {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    max-width: 640px;
+  }
+
+  .contact__aside {
+    padding: var(--space-5);
+  }
+
+  .contact__art svg {
+    max-width: 200px;
+  }
+
+  .contact__note {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding-block: 40px;
+  }
+
+  .menu-btn {
+    display: inline-flex;
+  }
+
+  .nav {
+    display: none;
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav.is-open {
+    display: flex;
+  }
+
+  .nav__link {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .hero {
+    padding: var(--space-5);
+  }
+
+  .hero__name {
+    font-size: 1.75rem;
+  }
+
+  .status {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact__art {
+    display: none;
+  }
+
+  .contact__cta {
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .contact__card,
+  .contact__aside {
+    padding: var(--space-5);
+  }
+
+  .editor__surface--auto {
+    min-height: 130px;
+  }
+
+  .editor__toolbar {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero__media {
+    flex: 0 0 112px;
+  }
+
+  .hero__avatar {
+    width: 112px;
+    height: 112px;
+  }
+}
+
+/* شبكات البطاقات على أضيق الشاشات */
+@media (max-width: 380px) {
+  .projects,
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}

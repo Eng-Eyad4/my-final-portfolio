@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="معرض أعمال إياد يعرب نيوف — تطبيقات ويب وأنظمة قواعد بيانات."
+    />
+    <meta name="theme-color" content="#9b111e" />
+    <title>معرض الأعمال | إياد يعرب نيوف</title>
+
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+
+    <script>
+      // يُطبَّق قبل الرسم الأول لمنع وميض الثيم/الاتجاه
+      (function () {
+        try {
+          if (localStorage.getItem("portfolio_theme") === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+          if (localStorage.getItem("portfolio_lang") === "en") {
+            document.documentElement.lang = "en";
+            document.documentElement.dir = "ltr";
+          }
+        } catch (error) {}
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main" data-i18n="a11y.skip">تجاوز إلى المحتوى</a>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="#" data-nav="home" id="brand">إياد يعرب نيوف</a>
+
+        <nav class="nav" id="nav" aria-label="التنقل الرئيسي">
+          <button
+            class="nav__link is-active"
+            type="button"
+            data-nav="home"
+            data-i18n="nav.home"
+            aria-current="page"
+          >
+            الرئيسية
+          </button>
+          <button class="nav__link" type="button" data-nav="projects" data-i18n="nav.projects">
+            أعمالي
+          </button>
+          <button class="nav__link" type="button" data-nav="contact" data-i18n="nav.contact">
+            تواصل معي
+          </button>
+          <button class="nav__link nav__link--panel" type="button" data-nav="dashboard">
+            <span data-i18n="nav.dashboard">لوحة التحكم</span>
+            <span class="nav__badge" id="navBadge">0</span>
+          </button>
+        </nav>
+
+        <div class="tools">
+          <p class="status" id="status" role="status" aria-live="polite" hidden></p>
+
+          <button
+            class="icon-btn"
+            type="button"
+            id="themeToggle"
+            data-action="theme"
+            data-i18n-title="a11y.themeDark"
+            title="التبديل إلى الوضع الليلي"
+            aria-label="التبديل إلى الوضع الليلي"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <button
+            class="lang-btn"
+            type="button"
+            id="langToggle"
+            data-action="lang"
+            title="Switch to English"
+            aria-label="Switch to English"
+          >
+            EN
+          </button>
+
+          <button
+            class="icon-btn menu-btn"
+            type="button"
+            id="menuToggle"
+            data-action="menu"
+            data-i18n-title="a11y.menu"
+            aria-label="فتح القائمة"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container main" id="main">
+      <section class="page is-active" id="page-home" data-page="home">
+        <div class="hero card">
+          <div class="hero__media">
+            <img class="hero__avatar" id="displayAvatar" src="" alt="" />
+          </div>
+
+          <div class="hero__body">
+            <h1 class="hero__name" id="displayName">إياد يعرب نيوف</h1>
+            <p class="hero__role" id="displayTitle"></p>
+            <p class="hero__bio" id="displayBio"></p>
+
+            <div class="hero__meta">
+              <span class="meta-item">
+                <span data-i18n="common.email">البريد</span>
+                <strong id="displayEmail" dir="ltr"></strong>
+              </span>
+              <span class="meta-item">
+                <span data-i18n="common.location">الإقامة</span>
+                <strong id="displayLocation"></strong>
+              </span>
+            </div>
+
+            <ul class="skills" id="skills"></ul>
+
+            <div class="hero__actions">
+              <button class="btn btn--primary" type="button" data-nav="projects" data-i18n="home.browse">
+                تصفح أعمالي
+              </button>
+              <button class="btn btn--outline" type="button" data-nav="contact" data-i18n="home.contact">
+                تواصل معي
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-projects" data-page="projects">
+        <header class="section-head">
+          <h2 class="section-head__title" data-i18n="projects.title">معرض الأعمال والمشاريع</h2>
+          <p class="section-head__text" data-i18n="projects.subtitle">
+            تطبيقات ويب وأنظمة قواعد بيانات قمت ببرمجتها وتطويرها
+          </p>
+        </header>
+
+        <div class="projects" id="projectsGrid"></div>
+      </section>
+
+      <section class="page" id="page-contact" data-page="contact">
+        <header class="section-head section-head--center">
+          <h2 class="section-head__title" data-i18n="contact.title">تواصل معي</h2>
+          <p class="section-head__text" data-i18n="contact.subtitle">
+            أرسل تفاصيل مشروعك أو استفسارك التقني وسأرد عليك عبر البريد الإلكتروني
+          </p>
+        </header>
+
+        <div class="contact">
+          <aside class="contact__aside card">
+            <div class="contact__art" aria-hidden="true">
+              <svg viewBox="0 0 240 190" fill="none">
+                <rect x="34" y="28" width="150" height="98" rx="14" stroke="currentColor" stroke-width="2.5" opacity="0.45" />
+                <path d="M34 42l75 50 75-50" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <rect x="124" y="92" width="88" height="60" rx="16" fill="var(--bg-surface)" stroke="currentColor" stroke-width="2.5" />
+                <path d="M150 114h38M150 128h24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.7" />
+                <circle cx="60" cy="146" r="16" fill="currentColor" opacity="0.12" />
+                <circle cx="60" cy="146" r="6" stroke="currentColor" stroke-width="2.5" />
+                <circle cx="196" cy="46" r="10" fill="currentColor" opacity="0.14" />
+                <path d="M196 40v12M190 46h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+
+            <h3 class="contact__title" data-i18n="contact.asideTitle">لنبنِ مشروعك القادم معاً</h3>
+            <p class="contact__text" data-i18n="contact.asideText">
+              أخبرني بفكرتك أو المشكلة التقنية التي تواجهها، وسأعود إليك بخطة واضحة ومدة زمنية وتقدير للتكلفة.
+            </p>
+
+            <ul class="facts">
+              <li class="fact">
+                <span class="fact__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                    <path d="M2 7l10 6 10-6"></path>
+                  </svg>
+                </span>
+                <span class="fact__label" data-i18n="common.email">البريد</span>
+                <strong class="fact__value" id="contactEmail" dir="ltr"></strong>
+              </li>
+              <li class="fact">
+                <span class="fact__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 6-9 11-9 11S3 16 3 10a9 9 0 1 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </span>
+                <span class="fact__label" data-i18n="common.location">الإقامة</span>
+                <strong class="fact__value" id="contactLocation"></strong>
+              </li>
+            </ul>
+
+            <a
+              class="btn btn--outline contact__cta"
+              id="contactWhatsApp"
+              href="https://wa.me/963994845656"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg class="contact__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"
+                />
+              </svg>
+              <span data-i18n="contact.whatsapp">تواصل عبر واتساب</span>
+            </a>
+
+            <p class="contact__note" data-i18n="contact.replyTime">أرد عادةً خلال 24 ساعة في أيام العمل.</p>
+          </aside>
+
+          <div class="contact__card card">
+            <form class="form" id="contactForm">
+              <div class="form__row">
+                <div class="field">
+                  <label class="field__label" for="senderName" data-i18n="contact.name">الاسم الكامل</label>
+                  <input
+                    class="input"
+                    id="senderName"
+                    name="name"
+                    type="text"
+                    autocomplete="name"
+                    required
+                    data-i18n-placeholder="contact.namePh"
+                    placeholder="أدخل اسمك الكامل"
+                  />
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="senderEmail" data-i18n="contact.email">البريد الإلكتروني</label>
+                  <input
+                    class="input"
+                    id="senderEmail"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    inputmode="email"
+                    required
+                    placeholder="name@domain.com"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="senderSubject" data-i18n="contact.subject">عنوان الرسالة</label>
+                <input
+                  class="input"
+                  id="senderSubject"
+                  name="subject"
+                  type="text"
+                  required
+                  data-i18n-placeholder="contact.subjectPh"
+                  placeholder="مثال: تطوير متجر إلكتروني بـ Django"
+                />
+              </div>
+
+              <div class="field">
+                <span class="field__label" id="messageLabel" data-i18n="contact.message">تفاصيل الرسالة</span>
+
+                <div class="editor">
+                  <div class="editor__toolbar" role="toolbar" data-i18n-title="a11y.toolbar">
+                    <button class="editor__btn" type="button" data-command="bold" data-editor="senderMessage"
+                      data-i18n-title="editor.bold" title="خط عريض" aria-label="خط عريض"><b>B</b></button>
+                    <button class="editor__btn" type="button" data-command="italic" data-editor="senderMessage"
+                      data-i18n-title="editor.italic" title="خط مائل" aria-label="خط مائل"><i>I</i></button>
+                    <button class="editor__btn" type="button" data-command="underline" data-editor="senderMessage"
+                      data-i18n-title="editor.underline" title="تحته خط" aria-label="تحته خط"><u>U</u></button>
+                    <button class="editor__btn" type="button" data-command="strikeThrough" data-editor="senderMessage"
+                      data-i18n-title="editor.strike" title="يتوسطه خط" aria-label="يتوسطه خط"><s>S</s></button>
+                    <button class="editor__btn" type="button" data-command="insertUnorderedList" data-editor="senderMessage"
+                      data-i18n-title="editor.bullets" title="قائمة نقطية" aria-label="قائمة نقطية">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <path d="M9 6h12M9 12h12M9 18h12"></path>
+                        <circle cx="4" cy="6" r="1.5" fill="currentColor" stroke="none"></circle>
+                        <circle cx="4" cy="12" r="1.5" fill="currentColor" stroke="none"></circle>
+                        <circle cx="4" cy="18" r="1.5" fill="currentColor" stroke="none"></circle>
+                      </svg>
+                    </button>
+                    <button class="editor__btn" type="button" data-command="insertOrderedList" data-editor="senderMessage"
+                      data-i18n-title="editor.numbers" title="قائمة مرقّمة" aria-label="قائمة مرقّمة">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <path d="M10 6h11M10 12h11M10 18h11"></path>
+                        <text x="1.5" y="8.6" font-size="6.5" fill="currentColor" stroke="none">1</text>
+                        <text x="1.5" y="14.6" font-size="6.5" fill="currentColor" stroke="none">2</text>
+                        <text x="1.5" y="20.6" font-size="6.5" fill="currentColor" stroke="none">3</text>
+                      </svg>
+                    </button>
+                    <button class="editor__btn" type="button" data-command="removeFormat" data-editor="senderMessage"
+                      data-i18n-title="editor.clear" title="مسح التنسيق" aria-label="مسح التنسيق">
+                      <span data-i18n="editor.clearShort">مسح</span>
+                    </button>
+                  </div>
+
+                  <div
+                    class="editor__surface editor__surface--auto"
+                    id="senderMessage"
+                    contenteditable="true"
+                    role="textbox"
+                    aria-multiline="true"
+                    aria-labelledby="messageLabel"
+                    data-i18n-placeholder="contact.messagePh"
+                    data-placeholder="اكتب المتطلبات التقنية والتفاصيل هنا..."
+                  ></div>
+                </div>
+
+                <p class="field__error" id="messageError" hidden data-i18n="contact.messageError">
+                  الرجاء كتابة تفاصيل الرسالة قبل الإرسال.
+                </p>
+              </div>
+
+              <div class="form__actions">
+                <button class="btn btn--primary" type="submit" data-i18n="contact.send">إرسال الرسالة</button>
+              </div>
+
+              <p class="alert" id="contactSuccess" role="status" hidden data-i18n="contact.success">
+                تم إرسال رسالتك بنجاح، وهي محفوظة الآن في لوحة التحكم.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-dashboard" data-page="dashboard">
+        <header class="section-head">
+          <h2 class="section-head__title" data-i18n="dash.title">لوحة التحكم وإدارة الموقع</h2>
+          <p class="section-head__text" data-i18n="dash.subtitle">
+            حدّث بياناتك الشخصية، أضف أو عدّل مشاريعك، وتابع الرسائل الواردة من الزوار
+          </p>
+        </header>
+
+        <div class="dashboard">
+          <section class="panel card">
+            <h3 class="panel__title" data-i18n="dash.profile">تعديل المعلومات الشخصية</h3>
+
+            <form class="form" id="profileForm">
+              <div class="field">
+                <label class="field__label" for="avatarInput" data-i18n="dash.avatar">تغيير الصورة الشخصية (من جهازك)</label>
+                <input class="input" id="avatarInput" type="file" accept="image/*" />
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="inputName" data-i18n="contact.name">الاسم الكامل</label>
+                <input class="input" id="inputName" type="text" required />
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="inputTitle" data-i18n="dash.role">المسمى الوظيفي</label>
+                <input class="input" id="inputTitle" type="text" required />
+              </div>
+
+              <div class="form__row">
+                <div class="field">
+                  <label class="field__label" for="inputEmail" data-i18n="contact.email">البريد الإلكتروني</label>
+                  <input class="input" id="inputEmail" type="email" required />
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="inputLocation" data-i18n="dash.place">المدينة والبلد</label>
+                  <input class="input" id="inputLocation" type="text" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="inputSkills" data-i18n="dash.skills">المهارات التقنية (افصل بينها بفاصلة ,)</label>
+                <input class="input" id="inputSkills" type="text" placeholder="HTML5, CSS3, JavaScript, Python, Django" />
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="inputBio" data-i18n="dash.bio">النبذة التعريفية</label>
+                <textarea class="input" id="inputBio" rows="4" required></textarea>
+              </div>
+
+              <div class="form__actions">
+                <button class="btn btn--primary" type="submit" data-i18n="dash.save">حفظ التعديلات الشخصية</button>
+                <span class="notice" id="profileNotice" role="status"></span>
+              </div>
+            </form>
+          </section>
+
+          <section class="panel card">
+            <h3 class="panel__title" id="projectFormTitle" data-i18n="dash.addProject">إضافة عمل جديد</h3>
+
+            <form class="form" id="projectForm">
+              <input id="projectId" type="hidden" value="" />
+
+              <div class="field">
+                <label class="field__label" for="projectTitle" data-i18n="dash.projectTitle">عنوان المشروع</label>
+                <input
+                  class="input"
+                  id="projectTitle"
+                  type="text"
+                  required
+                  data-i18n-placeholder="dash.projectTitlePh"
+                  placeholder="مثال: منصة دار سطور للكتب"
+                />
+              </div>
+
+              <div class="form__row">
+                <div class="field">
+                  <label class="field__label" for="projectImage" data-i18n="dash.projectImage">صورة المشروع (من جهازك)</label>
+                  <input class="input" id="projectImage" type="file" accept="image/*" />
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="projectLink" data-i18n="dash.projectLink">رابط المشروع (اختياري)</label>
+                  <input class="input" id="projectLink" type="url" placeholder="https://example.com" />
+                </div>
+              </div>
+
+              <div class="field">
+                <span class="field__label" id="projectDescriptionLabel" data-i18n="dash.projectDescription">وصف المشروع (حدد النص واستخدم الأزرار للتنسيق)</span>
+
+                <div class="editor">
+                  <div class="editor__toolbar" role="toolbar" data-i18n-title="a11y.toolbar">
+                    <button class="editor__btn" type="button" data-command="bold" data-editor="projectDescription"
+                      data-i18n-title="editor.bold" title="خط عريض" aria-label="خط عريض"><b>B</b></button>
+                    <button class="editor__btn" type="button" data-command="italic" data-editor="projectDescription"
+                      data-i18n-title="editor.italic" title="خط مائل" aria-label="خط مائل"><i>I</i></button>
+                    <button class="editor__btn" type="button" data-command="underline" data-editor="projectDescription"
+                      data-i18n-title="editor.underline" title="تحته خط" aria-label="تحته خط"><u>U</u></button>
+                    <button class="editor__btn" type="button" data-command="strikeThrough" data-editor="projectDescription"
+                      data-i18n-title="editor.strike" title="يتوسطه خط" aria-label="يتوسطه خط"><s>S</s></button>
+                    <button class="editor__btn" type="button" data-command="insertUnorderedList" data-editor="projectDescription"
+                      data-i18n-title="editor.bullets" title="قائمة نقطية" aria-label="قائمة نقطية">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <path d="M9 6h12M9 12h12M9 18h12"></path>
+                        <circle cx="4" cy="6" r="1.5" fill="currentColor" stroke="none"></circle>
+                        <circle cx="4" cy="12" r="1.5" fill="currentColor" stroke="none"></circle>
+                        <circle cx="4" cy="18" r="1.5" fill="currentColor" stroke="none"></circle>
+                      </svg>
+                    </button>
+                    <button class="editor__btn" type="button" data-command="removeFormat" data-editor="projectDescription"
+                      data-i18n-title="editor.clear" title="مسح التنسيق" aria-label="مسح التنسيق">
+                      <span data-i18n="editor.clearShort">مسح</span>
+                    </button>
+                  </div>
+
+                  <div class="editor__surface" id="projectDescription" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="projectDescriptionLabel"></div>
+                </div>
+              </div>
+
+              <div class="form__actions">
+                <button class="btn btn--primary" type="submit" id="saveProject" data-i18n="dash.publish">نشر العمل في الموقع</button>
+                <button class="btn btn--outline" type="button" id="cancelEdit" data-i18n="dash.cancel" hidden>
+                  إلغاء التعديل
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <section class="panel panel--wide card">
+          <h3 class="panel__title" data-i18n="dash.published">الأعمال المنشورة حالياً (اضغط على "تعديل" لتحرير أي عمل)</h3>
+
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" data-i18n="dash.tableImage">الصورة</th>
+                  <th scope="col" data-i18n="dash.tableTitle">عنوان العمل</th>
+                  <th scope="col" data-i18n="dash.tableDesc">الوصف المنسق</th>
+                  <th scope="col" data-i18n="dash.tableActions">الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="projectsTable"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel panel--wide card">
+          <div class="inbox__head">
+            <h3 class="panel__title" data-i18n="dash.inbox">الرسائل الواردة من صفحة "تواصل معي"</h3>
+            <button class="btn btn--danger btn--sm" type="button" data-action="clear-messages" data-i18n="dash.clearAll">
+              مسح جميع الرسائل
+            </button>
+          </div>
+
+          <div class="inbox" id="messages"></div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          <span data-i18n="footer.rights">جميع الحقوق محفوظة ©</span>
+          <span id="footerName"></span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/core.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,393 @@
+/* ==========================================================================
+   components — cards, buttons, fields, editor, table, status
+   ========================================================================== */
+
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  transition:
+    background-color var(--dur-theme) ease-out,
+    border-color var(--dur-theme) ease-out;
+}
+
+/* الأزرار ---------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 40px;
+  padding-inline: var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur) ease-out,
+    border-color var(--dur) ease-out,
+    color var(--dur) ease-out;
+}
+
+.btn--primary {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn--outline {
+  border-color: var(--border-color);
+  color: var(--text-main);
+}
+
+.btn--outline:hover {
+  background-color: var(--bg-input);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn--danger {
+  background-color: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+}
+
+.btn--danger:hover {
+  opacity: 0.9;
+}
+
+.btn--edit {
+  background-color: var(--bg-input);
+  border-color: var(--border-color);
+}
+
+.btn--edit:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn--sm {
+  height: 32px;
+  padding-inline: var(--space-3);
+}
+
+/* مجموعة أزرار متساوية داخل الجداول والرسائل */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.actions .btn {
+  min-width: 84px;
+}
+
+.btn[hidden] {
+  display: none;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  color: var(--text-main);
+  transition:
+    background-color var(--dur) ease-out,
+    border-color var(--dur) ease-out,
+    color var(--dur) ease-out;
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-btn:hover {
+  background-color: var(--bg-input);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.lang-btn {
+  min-width: 46px;
+  height: 36px;
+  padding-inline: var(--space-3);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  color: var(--primary);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition:
+    background-color var(--dur) ease-out,
+    border-color var(--dur) ease-out;
+}
+
+.lang-btn:hover {
+  background-color: var(--bg-input);
+  border-color: var(--primary);
+}
+
+/* الحقول والنماذج -------------------------------------------------------- */
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.form__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.field__label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  min-height: 40px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+  color: var(--text-main);
+  font-size: var(--text-base);
+  transition: border-color var(--dur) ease-out;
+}
+
+.input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+textarea.input {
+  min-height: 96px;
+  resize: vertical;
+}
+
+input[type="file"].input {
+  padding-block: 6px;
+  cursor: pointer;
+  font-size: var(--text-sm);
+}
+
+.field__error {
+  color: var(--danger);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.field__error[hidden] {
+  display: none;
+}
+
+/* محرّر النص المنسّق ------------------------------------------------------ */
+
+.editor {
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+}
+
+.editor__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+}
+
+.editor__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding-inline: var(--space-3);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+  font-size: var(--text-sm);
+  transition:
+    border-color var(--dur) ease-out,
+    color var(--dur) ease-out;
+}
+
+.editor__btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.editor__btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.editor__surface {
+  min-height: 120px;
+  max-height: 240px;
+  overflow-y: auto;
+  padding: var(--space-3);
+  outline: none;
+  font-size: var(--text-base);
+}
+
+/* نسخة تتمدد مع المحتوى بلا شريط تمرير (مربّع الرسالة) */
+.editor__surface--auto {
+  min-height: 150px;
+  max-height: none;
+  overflow: visible;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.editor__surface--auto:empty::before {
+  content: attr(data-placeholder);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.editor__surface :where(ul, ol) {
+  margin-block: 6px;
+  padding-inline-start: 22px;
+  list-style: revert;
+}
+
+/* تنبيهات ---------------------------------------------------------------- */
+
+.alert {
+  padding: var(--space-3);
+  border: 1px solid var(--success);
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+  color: var(--success);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.alert[hidden] {
+  display: none;
+}
+
+.notice {
+  color: var(--success);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+/* الجداول ---------------------------------------------------------------- */
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+}
+
+.table :where(th, td) {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--border-color);
+  text-align: start;
+  vertical-align: middle;
+  font-size: var(--text-sm);
+}
+
+.table th {
+  font-weight: 700;
+}
+
+.table img {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+}
+
+/* شريط حالة الترجمة ------------------------------------------------------ */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 260px;
+  padding: 4px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.status[hidden] {
+  display: none;
+}
+
+.status::before {
+  content: "";
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--primary);
+}
+
+.status.is-busy::before {
+  animation: pulse 900ms ease-in-out infinite;
+}
+
+.status.is-error {
+  border-color: var(--danger);
+  color: var(--danger);
+  cursor: pointer;
+}
+
+.status.is-error::before {
+  background-color: var(--danger);
+  animation: none;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+}
+
+.empty {
+  padding-block: var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
